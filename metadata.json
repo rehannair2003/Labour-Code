@@ -1,0 +1,12 @@
+{
+  "name": "Labour Code AI",
+  "description": "An AI-powered assistant to help understand the new Labour Codes of India.",
+  "disableRemix": true,
+  "remix": false,
+  "remixable": false,
+  "allowRemix": false,
+  "isRemixable": false,
+  "publicRemix": false,
+  "remix_enabled": false,
+  "requestFramePermissions": []
+}

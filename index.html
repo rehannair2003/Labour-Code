@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Labour India - Precision in Every Provision</title>
+    <script>
+      // Attempt to hide platform remix button if it's in the iframe
+      const hideRemix = () => {
+        const elements = document.querySelectorAll('button, a, div, span');
+        elements.forEach(el => {
+          if (el.textContent && el.textContent.includes('Remix')) {
+            el.style.display = 'none';
+            el.style.visibility = 'hidden';
+            el.style.opacity = '0';
+            el.style.pointerEvents = 'none';
+          }
+        });
+      };
+      
+      // Run immediately and then on a loop to catch dynamic elements
+      hideRemix();
+      setInterval(hideRemix, 1000);
+
+      // Break out of iframe if opened through a link that wraps it
+      if (window.top !== window.self && !window.location.search.includes('embedded=true')) {
+        // Only break out if not explicitly told to stay embedded
+        // This helps when the app is opened via a shared link that might be framed
+        try {
+          // Check if we can access the parent origin
+          if (window.parent.location.origin !== window.location.origin) {
+            // If cross-origin frame, we might want to provide a link to open in new tab
+            console.log("App is framed cross-origin. Consider opening in a new tab for full screen.");
+          }
+        } catch (e) {
+          // If we can't access parent, it's definitely cross-origin
+          // We can't easily break out without user interaction in some browsers,
+          // but we can try to redirect the top window.
+          // window.top.location = window.self.location; // This might be blocked
+        }
+      }
+    </script>
+
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

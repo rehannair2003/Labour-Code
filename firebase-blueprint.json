@@ -1,0 +1,93 @@
+{
+  "entities": {
+    "LabourCode": {
+      "title": "Labour Code",
+      "description": "A major labour code document",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "effectiveDate": { "type": "string", "format": "date" },
+        "iconName": { "type": "string" }
+      },
+      "required": ["title", "description"]
+    },
+    "Section": {
+      "title": "Section",
+      "description": "A specific section within a labour code",
+      "type": "object",
+      "properties": {
+        "number": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "order": { "type": "number" }
+      },
+      "required": ["number", "title", "content"]
+    },
+    "Rule": {
+      "title": "Rule",
+      "description": "A rule corresponding to a labour code",
+      "type": "object",
+      "properties": {
+        "number": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "codeId": { "type": "string" }
+      },
+      "required": ["number", "title", "content", "codeId"]
+    },
+    "CaseLaw": {
+      "title": "Case Law",
+      "description": "A legal case reference",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "court": { "type": "string" },
+        "year": { "type": "number" },
+        "citation": { "type": "string" },
+        "summary": { "type": "string" },
+        "relatedSectionIds": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["title", "court", "year", "summary"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "A government notification related to Labour Codes",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "source": { "type": "string", "enum": ["Central", "State"] },
+        "stateName": { "type": "string" },
+        "summary": { "type": "string" },
+        "url": { "type": "string" },
+        "category": { "type": "string" }
+      },
+      "required": ["title", "date", "source", "summary"]
+    }
+  },
+  "firestore": {
+    "codes": {
+      "schema": "LabourCode",
+      "description": "Collection of the 4 Labour Codes"
+    },
+    "codes/{codeId}/sections": {
+      "schema": "Section",
+      "description": "Sections within a specific Labour Code"
+    },
+    "rules": {
+      "schema": "Rule",
+      "description": "Rules associated with the codes"
+    },
+    "caseLaws": {
+      "schema": "CaseLaw",
+      "description": "Relevant case laws"
+    },
+    "notifications": {
+      "schema": "Notification",
+      "description": "Government notifications from Central and State"
+    }
+  }
+}

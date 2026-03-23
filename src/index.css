@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body {
+    @apply h-full w-full overflow-hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  #root {
+    @apply h-full w-full flex flex-col;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+@layer components {
+  .markdown-body {
+    @apply text-sm leading-relaxed;
+  }
+  
+  .markdown-body h1 { @apply text-2xl font-bold mt-6 mb-4; }
+  .markdown-body h2 { @apply text-xl font-bold mt-5 mb-3; }
+  .markdown-body h3 { @apply text-lg font-bold mt-4 mb-2; }
+  .markdown-body p { @apply mb-4; }
+  .markdown-body ul { @apply list-disc pl-5 mb-4; }
+  .markdown-body ol { @apply list-decimal pl-5 mb-4; }
+  .markdown-body li { @apply mb-1; }
+  .markdown-body code { @apply bg-slate-100 px-1.5 py-0.5 rounded font-mono text-xs text-indigo-600; }
+  .markdown-body pre { @apply bg-slate-900 text-slate-100 p-4 rounded-lg mb-4 overflow-x-auto; }
+  .markdown-body pre code { @apply bg-transparent p-0 text-slate-100; }
+  .markdown-body blockquote { @apply border-l-4 border-indigo-500 pl-4 italic text-slate-600 mb-4; }
+  .markdown-body strong { @apply font-bold text-slate-900; }
+
+  /* Attempt to hide platform remix elements if injected into iframe */
+  [class*="remix"], [id*="remix"], [aria-label*="Remix"], [title*="Remix"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+
